@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supermarket Management System - Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            display: flex;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #343a40;
+            color: #fff;
+            padding: 20px;
+        }
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .sidebar a {
+            color: #fff;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            transition: background 0.3s;
+        }
+        .sidebar a:hover {
+            background-color: #495057;
+        }
+        .main-content {
+            flex-grow: 1;
+            padding: 20px;
+        }
+        .header {
+            background-color: #007bff;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .welcome-text {
+            margin: 50px 0;
+            font-size: 24px;
+            font-weight: 600;
+        }
+        .btn {
+            margin: 10px;
+            width: 200px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.9em;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+
+<div class="sidebar">
+    <h2>Dashboard</h2>
+    <a href="http://localhost:9070/products"><i class="fas fa-box"></i> Manage Products</a>
+    <a href="http://localhost:9070/customers"><i class="fas fa-users"></i> Manage Customers</a>
+    <a href="http://localhost:9070/employee"><i class="fas fa-user-tie"></i> Manage Employees</a>
+    <a href="http://localhost:9070/billing"><i class="fas fa-receipt"></i> Manage Billing</a>
+    <a href="http://localhost:9070/transaction"><i class="fas fa-file-invoice"></i> View Transactions</a>
+    <a href="http://localhost:9070/analysis" class="btn btn-info"><i class="fas fa-chart-line"></i> Analysis</a> <!-- Changed color to btn-info -->
+    <a href="http://localhost:9070" class="btn btn-danger"><i class="fas fa-sign-out-alt"></i> Logout</a>
+</div>
+
+<div class="main-content">
+    <div class="header">
+        <h1>Welcome to the Supermarket Management System</h1>
+    </div>
+    <div class="container text-center">
+        <p class="welcome-text">Welcome Admin, you have logged in successfully!</p>
+        <a href="http://localhost:9070/products" class="btn btn-primary">Manage Products</a>
+        <a href="http://localhost:9070/customers" class="btn btn-success">Manage Customers</a>
+        <a href="http://localhost:9070/employee" class="btn btn-warning">Manage Employees</a>
+        <a href="http://localhost:9070/billing" class="btn btn-info">Manage Billing</a>
+        <a href="http://localhost:9070/transaction" class="btn btn-secondary">View Transactions</a>
+        <a href="http://localhost:9070/analysis" class="btn btn-info">View Analysis</a> <!-- Changed color to btn-info -->
+    </div>
+    <div class="footer">
+        <p>&copy; 2024 Supermarket Management System. All rights reserved.</p>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
