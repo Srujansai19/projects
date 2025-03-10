@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+        input[type="text"], input[type="number"] {
+            padding: 10px;
+            margin: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: calc(33% - 22px);
+        }
+        button {
+            padding: 10px 15px;
+            margin: 5px;
+            border: none;
+            border-radius: 4px;
+            background-color: #3498db;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #a9d1ea;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Employee Management</h1>
+    
+    <input type="text" id="employeeName" placeholder="Employee Name" required>
+    <input type="number" id="employeeID" placeholder="Employee ID" min="1" required>
+    <input type="text" id="employeeRole" placeholder="Employee Role" required>
+    <button onclick="addEmployee()">Add Employee</button>
+
+    <table id="employeeTable">
+        <thead>
+            <tr>
+                <th>Employee Name</th>
+                <th>Employee ID</th>
+                <th>Employee Role</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Employee rows will be added here -->
+        </tbody>
+    </table>
+
+    <script>
+        let editRowIndex = -1; // To track the row being edited
+
+        function addEmployee() {
+            const employeeName = document.getElementById('employeeName').value;
+            const employeeID = document.getElementById('employeeID').value;
+            const employeeRole = document.getElementById('employeeRole').value;
+
+            if (employeeName === '' || employeeID <= 0 || employeeRole === '') {
+                alert('Please enter valid employee details.');
+                return;
+            }
+
+            const table = document.getElementById('employeeTable').getElementsByTagName('tbody')[0];
+
+            if (editRowIndex === -1) {
+                // Add new row
+                const newRow = table.insertRow();
+                newRow.innerHTML = `
+                    <td>${employeeName}</td>
+                    <td>${employeeID}</td>
+                    <td>${employeeRole}</td>
+                    <td>
+                        <button onclick="editEmployee(this)">Edit</button>
+                        <button onclick="deleteEmployee(this)">Delete</button>
+                    </td>
+                `;
+            } else {
+                // Update existing row
+                const row = table.rows[editRowIndex];
+                row.cells[0].textContent = employeeName; // Update employee name
+                row.cells[1].textContent = employeeID; // Update employee ID
+                row.cells[2].textContent = employeeRole; // Update employee role
+                editRowIndex = -1; // Reset edit index
+            }
+
+            // Clear input fields
+            document.getElementById('employeeName').value = '';
+            document.getElementById('employeeID').value = '';
+            document.getElementById('employeeRole').value = '';
+        }
+
+        function editEmployee(button) {
+            const row = button.parentNode.parentNode; // Get the row of the button clicked
+            const employeeName = row.cells[0].textContent;
+                        // Get employee role from the row
+                        const employeeID = row.cells[1].textContent; // Get employee ID from the row
+            const employeeRole = row.cells[2].textContent; // Get employee role from the row
+
+            // Populate input fields for editing
+            document.getElementById('employeeName').value = employeeName; // Set employee name in input
+            document.getElementById('employeeID').value = employeeID; // Set employee ID in input
+            document.getElementById('employeeRole').value = employeeRole; // Set employee role in input
+
+            // Set the editRowIndex to the current row index
+            editRowIndex = row.rowIndex - 1; // Adjust for header row
+        }
+
+        function deleteEmployee(button) {
+            const row = button.parentNode.parentNode; // Get the row of the button clicked
+            row.parentNode.removeChild(row); // Remove the row from the table
+            editRowIndex = -1; // Reset edit index if row is deleted
+        }
+    </script>
+
+</body>
+</html>
